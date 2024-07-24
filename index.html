@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Memory Card Game - Session 2</title>
+    <title>Emoji Memory Card Game - Session 3</title>
     <style>
         body {
             display: flex;
@@ -37,6 +37,15 @@
             font-size: 2rem;
             cursor: pointer;
         }
+
+        .card.flipped {
+            background-color: #ffeb3b;
+        }
+
+        .card.matched {
+            background-color: #8bc34a;
+            cursor: default;
+        }
     </style>
 </head>
 <body>
@@ -48,13 +57,49 @@
         cardArray.sort(() => 0.5 - Math.random());
 
         const gameBoard = document.getElementById('gameBoard');
+        let flippedCards = [];
+        let matchedPairs = 0;
 
         cardArray.forEach(emoji => {
             const card = document.createElement('div');
             card.classList.add('card');
             card.dataset.emoji = emoji;
+            card.addEventListener('click', flipCard);
             gameBoard.appendChild(card);
         });
+
+        function flipCard() {
+            if (this.classList.contains('flipped') || this.classList.contains('matched') || flippedCards.length === 2) return;
+
+            this.classList.add('flipped');
+            this.innerHTML = this.dataset.emoji;
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                setTimeout(checkForMatch, 500);
+            }
+        }
+
+        function checkForMatch() {
+            const [card1, card2] = flippedCards;
+
+            if (card1.dataset.emoji === card2.dataset.emoji) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+
+                if (matchedPairs === emojis.length) {
+                    setTimeout(() => alert('You won!'), 100);
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                card1.innerHTML = '';
+                card2.innerHTML = '';
+            }
+
+            flippedCards = [];
+        }
     </script>
 </body>
 </html>
