@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Memory Card Game - Session 1</title>
+    <title>Emoji Memory Card Game - Session 2</title>
     <style>
         body {
             display: flex;
@@ -42,5 +42,19 @@
 <body>
     <h1>Emoji Memory Card Game</h1>
     <div class="game-board" id="gameBoard"></div>
+    <script>
+        const emojis = ['😀', '😂', '😎', '😍', '🤓', '😜', '😢', '😡'];
+        let cardArray = [...emojis, ...emojis];
+        cardArray.sort(() => 0.5 - Math.random());
+
+        const gameBoard = document.getElementById('gameBoard');
+
+        cardArray.forEach(emoji => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.dataset.emoji = emoji;
+            gameBoard.appendChild(card);
+        });
+    </script>
 </body>
 </html>
