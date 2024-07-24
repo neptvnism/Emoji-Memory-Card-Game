@@ -104,14 +104,31 @@
             <option value="hard">Hard</option>
             <option value="extra-hard">Extra Hard</option>
         </select>
+
+        <label for="theme">Choose theme: </label>
+        <select id="theme">
+            <option value="food">Food</option>
+            <option value="animals">Animals</option>
+            <option value="nature">Nature</option>
+            <option value="travel">Travel</option>
+            <option value="faces">Faces</option>
+        </select>
+
         <button onclick="startGame()">Start Game</button>
     </div>
     <div class="game-board" id="gameBoard"></div>
     <script>
-        const emojis = ['😀', '😂', '😎', '😍', '🤓', '😜', '😢', '😡', '😱', '🤠', '🥳', '😇', '🤖', '👻', '👽', '🎃'];
+        const emojiThemes = {
+            food: ['🍎', '🍔', '🍣', '🍕', '🍩', '🍦', '🍇', '🥑'],
+            animals: ['🐶', '🐱', '🦁', '🐵', '🐸', '🦄', '🐥', '🐨'],
+            nature: ['🌳', '🌻', '🌈', '🌵', '🌲', '🌴', '🍁', '🌿'],
+            travel: ['✈️', '🚂', '🚢', '🚗', '🛳️', '🗺️', '🏝️', '🗽'],
+            faces: ['😀', '😂', '😎', '😍', '😜', '😢', '😡', '😱']
+        };
         
         function startGame() {
             const difficulty = document.getElementById('difficulty').value;
+            const theme = document.getElementById('theme').value;
             let numPairs;
 
             switch (difficulty) {
@@ -129,7 +146,7 @@
                     break;
             }
 
-            const selectedEmojis = emojis.slice(0, numPairs);
+            const selectedEmojis = emojiThemes[theme].slice(0, numPairs);
             let cardArray = [...selectedEmojis, ...selectedEmojis];
             cardArray.sort(() => 0.5 - Math.random());
 
