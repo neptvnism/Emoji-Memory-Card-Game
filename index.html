@@ -14,9 +14,9 @@
             justify-content: center;
             height: 100vh;
             font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
-            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+            background: linear-gradient(45deg, red, red 25%, orange 25%, orange 50%, yellow 50%, yellow 75%, green 75%, green 100%);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradient 30s ease infinite;
             margin: 0;
         }
 
@@ -26,10 +26,13 @@
             100% { background-position: 0% 50%; }
         }
 
-        h1 {
-            margin-bottom: 20px;
+        h1, label, button, select {
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
         }
 
         .settings {
