@@ -70,7 +70,7 @@
         function startGame() {
             const difficulty = document.getElementById('difficulty').value;
             let numPairs;
-            
+
             switch (difficulty) {
                 case 'easy':
                     numPairs = 4;
@@ -92,7 +92,7 @@
 
             const gameBoard = document.getElementById('gameBoard');
             gameBoard.innerHTML = '';
-            gameBoard.style.gridTemplateColumns = `repeat(${Math.sqrt(numPairs * 2)}, 100px)`;
+            gameBoard.style.gridTemplateColumns = `repeat(${Math.ceil(Math.sqrt(numPairs * 2))}, 100px)`;
 
             let flippedCards = [];
             let matchedPairs = 0;
